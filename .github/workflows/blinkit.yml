@@ -3,7 +3,7 @@ name: Deploy Blinkit Clone
 on:
   push:
     branches:
-      - main  # Set this to your default branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,12 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # If you have a build step (like npm run build), add it here.
-      # For pure HTML/CSS, you can skip the build step.
+      # Optional: add a build step here if needed
+      # - name: Build
+      #   run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{secrets.GH_PAT }}
+          personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./dist
           publish_branch: gh-pages
